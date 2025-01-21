@@ -1,6 +1,6 @@
 # JsWidthBreakpoints
 
-![Image Preview](https://raw.githubusercontent.com/marceloxp/JsWidthBreakpoints/refs/heads/main/images/JsWidthBreakpoints.png)
+![Image Preview](https://raw.githubusercontent.com/marceloxp/JsWidthBreakpoints/refs/heads/main/images/screen.png)
 
 ![Version](https://img.shields.io/github/package-json/v/marceloxp/JsWidthBreakpoints)
 ![License](https://img.shields.io/github/license/marceloxp/JsWidthBreakpoints)

@@ -9,6 +9,8 @@
 <body>
     <h1>jsWidthBreakPoints</h1>
     <p>Redimensione a janela para ver as classes CSS sendo aplicadas.</p>
+    <p>Breakpoints: [400, 600, 800]</p>
+    <p id="current-width"></p>
 
     <script src="../dist/jsWidthBreakPoints.js"></script>
     <script>
@@ -18,6 +20,7 @@
             applyClasses: true,
             classPrefix: 'width-',
             onBreakPoint: (event) => {
+                document.getElementById('current-width').textContent = `Largura atual: ${event.currentWidth}`;
                 console.log('Breakpoint atingido:', event);
             },
         });

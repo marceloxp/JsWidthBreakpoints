@@ -2,7 +2,6 @@ class JsWidthBreakPoints {
     // Configurações padrão
     static defaults = {
         widths: [],               // Array de breakpoints (ex: [400, 600, 800])
-        syncWidthMediaQuery: false, // Sincronizar com media queries CSS
         onBreakPoint: null,       // Callback executado ao atingir um breakpoint
         applyClasses: true,       // Aplicar classes CSS dinamicamente
         classPrefix: 'width-',    // Prefixo para as classes CSS
@@ -19,9 +18,7 @@ class JsWidthBreakPoints {
 
     // Obtém a largura atual da janela
     static getWindowWidth() {
-        return this.options.syncWidthMediaQuery
-            ? window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth
-            : window.innerWidth;
+        return window.innerWidth; // Usa window.innerWidth diretamente
     }
 
     // Configura o listener de redimensionamento da janela

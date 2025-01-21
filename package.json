@@ -1,14 +1,25 @@
 {
   "name": "jswidthbreakpoints",
   "version": "1.0.0",
-  "description": "",
+  "description": "A lightweight, vanilla JavaScript library for handling responsive breakpoints with dynamic CSS classes and visual rules.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "responsive",
+    "breakpoints",
+    "javascript",
+    "vanilla-js",
+    "css-classes",
+    "media-queries",
+    "responsive-design",
+    "frontend",
+    "web-development"
+  ],
+  "author": "Marcelo XP",
+  "homepage": "https://github.com/marceloxp/jsWidthBreakPoints",
+  "license": "MIT",
   "devDependencies": {
     "gulp": "^5.0.0",
     "gulp-concat": "^2.6.1",

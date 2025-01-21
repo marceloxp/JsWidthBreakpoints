@@ -1,62 +1,62 @@
 class JsWidthBreakPoints {
-    // Configurações padrão
+    // Default settings
     static defaults = {
-        widths: [],               // Array de breakpoints (ex: [400, 600, 800])
-        onBreakPoint: null,       // Callback executado ao atingir um breakpoint
-        applyClasses: true,       // Aplicar classes CSS dinamicamente
-        classPrefix: 'width-',    // Prefixo para as classes CSS
+        widths: [],               // Array of breakpoints (e.g., [400, 600, 800])
+        onBreakPoint: null,       // Callback executed when a breakpoint is reached
+        applyClasses: true,       // Dynamically apply CSS classes
+        classPrefix: 'width-',    // Prefix for CSS classes
     };
 
-    // Inicializa a biblioteca
+    // Initialize the library
     static init(options = {}) {
-        // Mescla as opções padrão com as opções fornecidas pelo usuário
+        // Merge default options with user-provided options
         this.options = { ...this.defaults, ...options };
 
-        // Ordena os breakpoints em ordem decrescente
+        // Sort breakpoints in descending order
         this.breakpoints = this.options.widths.sort((a, b) => b - a);
 
-        // Obtém a largura atual da janela
+        // Get the current window width
         this.currentWidth = this.getWindowWidth();
 
-        // Guarda o nome da classe atual
+        // Store the current class name
         this.currentClass = null;
 
-        // Configura o listener de redimensionamento da janela
+        // Set up the window resize listener
         this.setupEventListeners();
 
-        // Verifica e aplica os breakpoints imediatamente
-        this.checkBreakPoints(true); // Passa `true` para forçar a execução do callback
+        // Check and apply breakpoints immediately
+        this.checkBreakPoints(true); // Pass `true` to force callback execution
     }
 
-    // Obtém a largura atual da janela
+    // Get the current window width
     static getWindowWidth() {
-        return window.innerWidth; // Usa window.innerWidth diretamente
+        return window.innerWidth; // Use window.innerWidth directly
     }
 
-    // Configura o listener de redimensionamento da janela
+    // Set up the window resize listener
     static setupEventListeners() {
         window.addEventListener('resize', () => {
             this.checkBreakPoints();
         });
     }
 
-    // Verifica os breakpoints e executa ações
+    // Check breakpoints and execute actions
     static checkBreakPoints(forceCallback = false) {
         const newWidth = this.getWindowWidth();
 
-        // Verifica se a largura mudou ou se o callback deve ser forçado
+        // Check if the width has changed or if the callback should be forced
         if (newWidth !== this.currentWidth || forceCallback) {
             this.currentWidth = newWidth;
             const breakpoint = this.getCurrentBreakpoint();
 
-            // Aplica classes CSS, se habilitado
+            // Apply CSS classes if enabled
             if (this.options.applyClasses) {
-                // Verifica se o breakpoint mudou
+                // Check if the breakpoint has changed
                 if (breakpoint !== this.currentClass) {
                     const oldBreakpoint = this.currentClass;
                     this.currentClass = breakpoint;
 
-                    // Executa o callback, se definido
+                    // Execute the callback if defined
                     if (typeof this.options.onBreakPoint === 'function') {
                         this.options.onBreakPoint({
                             oldBreakpoint: oldBreakpoint || '',
@@ -65,14 +65,14 @@ class JsWidthBreakPoints {
                         });
                     }
 
-                    // Aplica classes CSS com base no breakpoint
+                    // Apply CSS classes based on the breakpoint
                     this.applyBreakpointClasses(breakpoint);
                 }
             }
         }
     }
 
-    // Retorna o breakpoint atual
+    // Get the current breakpoint
     static getCurrentBreakpoint() {
         if (this.currentWidth <= this.breakpoints[this.breakpoints.length - 1]) {
             return `lt${this.breakpoints[this.breakpoints.length - 1]}`;
@@ -88,22 +88,22 @@ class JsWidthBreakPoints {
         return null;
     }
 
-    // Aplica classes CSS com base no breakpoint
+    // Apply CSS classes based on the breakpoint
     static applyBreakpointClasses(breakpoint) {
         const body = document.body;
         const classPrefix = this.options.classPrefix;
 
-        // Remove classes antigas
+        // Remove old classes
         body.classList.remove(
             ...Array.from(body.classList).filter((cls) => cls.startsWith(classPrefix))
         );
 
-        // Adiciona a nova classe
+        // Add the new class
         if (breakpoint) {
             body.classList.add(`${classPrefix}${breakpoint}`);
         }
     }
 }
 
-// Expõe a classe globalmente
+// Expose the class globally
 window.JsWidthBreakPoints = JsWidthBreakPoints;

@@ -9,11 +9,23 @@ class JsWidthBreakPoints {
 
     // Inicializa a biblioteca
     static init(options = {}) {
+        // Mescla as opções padrão com as opções fornecidas pelo usuário
         this.options = { ...this.defaults, ...options };
-        this.breakpoints = this.options.widths.sort((a, b) => b - a); // Ordena breakpoints
+
+        // Ordena os breakpoints em ordem decrescente
+        this.breakpoints = this.options.widths.sort((a, b) => b - a);
+
+        // Obtém a largura atual da janela
         this.currentWidth = this.getWindowWidth();
+
+        // Guarda o nome da classe atual
+        this.currentClass = null;
+
+        // Configura o listener de redimensionamento da janela
         this.setupEventListeners();
-        this.checkBreakPoints(); // Verifica breakpoints ao carregar a página
+
+        // Verifica e aplica os breakpoints imediatamente
+        this.checkBreakPoints(true); // Passa `true` para forçar a execução do callback
     }
 
     // Obtém a largura atual da janela
@@ -29,23 +41,33 @@ class JsWidthBreakPoints {
     }
 
     // Verifica os breakpoints e executa ações
-    static checkBreakPoints() {
+    static checkBreakPoints(forceCallback = false) {
         const newWidth = this.getWindowWidth();
-        if (newWidth !== this.currentWidth) {
+
+        // Verifica se a largura mudou ou se o callback deve ser forçado
+        if (newWidth !== this.currentWidth || forceCallback) {
             this.currentWidth = newWidth;
             const breakpoint = this.getCurrentBreakpoint();
 
-            // Executa o callback, se definido
-            if (typeof this.options.onBreakPoint === 'function') {
-                this.options.onBreakPoint({
-                    currentWidth: this.currentWidth,
-                    breakpoint: breakpoint,
-                });
-            }
-
             // Aplica classes CSS, se habilitado
             if (this.options.applyClasses) {
-                this.applyBreakpointClasses(breakpoint);
+                // Verifica se o breakpoint mudou
+                if (breakpoint !== this.currentClass) {
+                    const oldBreakpoint = this.currentClass;
+                    this.currentClass = breakpoint;
+
+                    // Executa o callback, se definido
+                    if (typeof this.options.onBreakPoint === 'function') {
+                        this.options.onBreakPoint({
+                            oldBreakpoint: oldBreakpoint || '',
+                            currentWidth: this.currentWidth,
+                            currentBreakpoint: breakpoint,
+                        });
+                    }
+
+                    // Aplica classes CSS com base no breakpoint
+                    this.applyBreakpointClasses(breakpoint);
+                }
             }
         }
     }

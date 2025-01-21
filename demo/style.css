@@ -3,19 +3,3 @@ body {
     text-align: center;
     padding: 20px;
 }
-
-.width-lt400 {
-    background-color: lightcoral;
-}
-
-.width-b400a600 {
-    background-color: lightblue;
-}
-
-.width-b600a800 {
-    background-color: lightgreen;
-}
-
-.width-gt800 {
-    background-color: lightyellow;
-}

@@ -48,6 +48,12 @@ p {
     margin: 0 0 0.5rem;
 }
 
+#widths {
+    font-weight: bold;
+    font-size: larger;
+    color: deeppink;
+}
+
 .card span {
     font-weight: bold;
 }

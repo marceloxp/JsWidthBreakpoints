@@ -5,40 +5,58 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>jsWidthBreakPoints - Demo</title>
+    <!-- Bulma CSS via CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            padding: 20px;
+        /* Global styles */
+        body,
+        html {
+            overflow-y: hidden;
         }
 
-        .width-lt400 {
+        .section {
+            height: 100vh;
+        }
+
+        /* Custom styles for breakpoints */
+        .width-lt400 .section {
             background-color: lightcoral;
         }
 
-        .width-b400a600 {
-            background-color: lightblue;
+        .width-b400a600 .section {
+            background-color: cornflowerblue;
         }
 
-        .width-b600a800 {
-            background-color: lightgreen;
+        .width-b600a800 .section {
+            background-color: lightseagreen;
         }
 
-        .width-gt800 {
-            background-color: lightyellow;
+        .width-gt800 .section {
+            background-color: darkslateblue;
         }
     </style>
 </head>
 
 <body>
-    <h1>jsWidthBreakPoints</h1>
-    <p>Resize the window to see the CSS classes being applied.</p>
-    <p>Breakpoints: [400, 600, 800]</p>
-    <p id="current-width"></p>
+    <section class="section">
+        <div class="container">
+            <!-- Header -->
+            <div class="has-text-centered mb-6">
+                <h1 class="title is-1 has-text-light">jsWidthBreakPoints</h1>
+                <p class="subtitle is-4 has-text-light">Resize the window to see the CSS classes being applied.</p>
+            </div>
 
-    <!-- Rule container -->
-    <div id="rule"></div>
+            <!-- Breakpoint Info -->
+            <div class="box">
+                <p class="title is-4 has-text-centered">Breakpoints:<br><span class="has-text-info">[400, 600,
+                        800]</span>
+                </p>
+                <p id="current-width" class="subtitle is-5 mt-2"></p>
+            </div>
+        </div>
+    </section>
 
+    <!-- jsWidthBreakPoints Library -->
     <script src="../dist/jsWidthBreakPoints.js"></script>
     <script>
         JsWidthBreakPoints.init({
@@ -47,7 +65,7 @@
             classPrefix: 'width-',
             rule: {
                 show: true, // Show the rule
-                opacity: 0.6, // Opacity of the rule
+                opacity: 1, // Opacity of the rule
                 color: 'red', // Color of the rule
             },
             onBreakPoint: (event) => {
@@ -56,7 +74,10 @@
         });
 
         const drawInfo = () => {
-            document.getElementById('current-width').textContent = `Current width: ${window.innerWidth} | current breakpoint: ${JsWidthBreakPoints.currentClass}`;
+            document.getElementById('current-width').innerHTML = `
+                <p class="has-text-centered">Current width: ${window.innerWidth}
+                <br>
+                Current breakpoint: ${JsWidthBreakPoints.currentClass}</p>`;
         };
 
         // Update current width display

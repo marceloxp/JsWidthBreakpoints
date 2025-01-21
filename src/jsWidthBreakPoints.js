@@ -144,10 +144,12 @@ class JsWidthBreakPoints {
                 position: absolute;
                 top: 10px;
                 left: 5px;
-                background-color: rgba(255, 255, 255, 0.8);
+                background-color: dimgrey;
+                color: white;
                 padding: 2px 5px;
                 font-size: 12px;
                 border-radius: 3px;
+                shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
                 opacity: ${this.options.rule.opacity};
             }
         `;

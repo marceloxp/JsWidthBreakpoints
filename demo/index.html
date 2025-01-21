@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>jsWidthBreakPoints - Demo</title>
-    <link rel="stylesheet" href="style.css">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -56,12 +55,16 @@
             },
         });
 
+        const drawInfo = () => {
+            document.getElementById('current-width').textContent = `Current width: ${window.innerWidth} | current breakpoint: ${JsWidthBreakPoints.currentClass}`;
+        };
+
         // Update current width display
         window.addEventListener('resize', (event) => {
-            document.getElementById('current-width').textContent = `Current width: ${event.target.innerWidth}`;
+            drawInfo();
         });
 
-        document.getElementById('current-width').textContent = `Current width: ${window.innerWidth}`;
+        drawInfo();
     </script>
 </body>
 

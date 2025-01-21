@@ -1,5 +1,7 @@
 # jsWidthBreakPoints
 
+![Image Preview](images/jsWidthBreakPoints.png)
+
 ![Version](https://img.shields.io/github/package-json/v/marceloxp/jsWidthBreakPoints)
 ![License](https://img.shields.io/github/license/marceloxp/jsWidthBreakPoints)
 

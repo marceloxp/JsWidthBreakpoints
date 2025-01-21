@@ -35,6 +35,9 @@ class JsWidthBreakPoints {
         // Get the current window width
         this.currentWidth = this.getWindowWidth();
 
+        // Get all possible breakpoint class names
+        this.allBreakpointClasses = this.getAllBreakpointClasses();
+
         // Store the current class name
         this.currentClass = null;
 
@@ -49,6 +52,20 @@ class JsWidthBreakPoints {
             this.injectRuleStyles(); // Inject CSS styles
             this.createRule();       // Create the rule
         }
+    }
+
+    // Get all possibles breakpoint class names
+    static getAllBreakpointClasses() {
+        const result = [
+            `lt${this.smallestBreakpoint}`,
+            `gt${this.biggestBreakpoint}`,
+        ];
+
+        for (let i = this.breakpoints_length - 1; i > 0; i--) {
+            result.push(`b${this.breakpoints[i]}a${this.breakpoints[i - 1]}`);
+        }
+
+        return result;
     }
 
     // Get the current window width
@@ -117,9 +134,9 @@ class JsWidthBreakPoints {
         const classPrefix = this.options.classPrefix;
 
         // Remove old classes
-        body.classList.remove(
-            ...Array.from(body.classList).filter((cls) => cls.startsWith(classPrefix))
-        );
+        this.allBreakpointClasses.forEach((cls) => {
+            body.classList.remove(`${classPrefix}${cls}`);
+        });
 
         // Add the new class
         if (breakpoint) {

@@ -175,10 +175,11 @@ class JsWidthBreakPoints {
                 left: 5px;
                 background-color: dimgrey;
                 color: white;
-                padding: 2px 5px;
+                padding: 4px 6px;
                 font-size: 12px;
                 border-radius: 3px;
-                shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+                font-family: monospace;
+                box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.75);
                 opacity: ${this.options.rule.opacity};
             }
         `;

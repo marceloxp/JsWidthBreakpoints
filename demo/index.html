@@ -5,56 +5,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>jsWidthBreakPoints - Demo</title>
-    <!-- Bulma CSS via CDN -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <link rel="stylesheet" href="style.css">
     <style>
-        /* Global styles */
-        body,
-        html {
-            overflow-y: hidden;
-        }
-
-        .section {
-            height: 100vh;
-        }
-
         /* Custom styles for breakpoints */
-        .width-lt400 .section {
+        .width-lt400 .area {
             background-color: lightcoral;
         }
 
-        .width-b400a600 .section {
+        .width-b400a600 .area {
             background-color: cornflowerblue;
         }
 
-        .width-b600a800 .section {
+        .width-b600a800 .area {
             background-color: lightseagreen;
         }
 
-        .width-gt800 .section {
+        .width-gt800 .area {
             background-color: darkslateblue;
         }
     </style>
 </head>
 
 <body>
-    <section class="section">
-        <div class="container">
-            <!-- Header -->
-            <div class="has-text-centered mb-6">
-                <h1 class="title is-1 has-text-light">jsWidthBreakPoints</h1>
-                <p class="subtitle is-4 has-text-light">Resize the window to see the CSS classes being applied.</p>
-            </div>
-
-            <!-- Breakpoint Info -->
-            <div class="box">
-                <p class="title is-4 has-text-centered">Breakpoints:<br><span class="has-text-info">[400, 600,
-                        800]</span>
-                </p>
-                <p id="current-width" class="subtitle is-5 mt-2"></p>
+    <div class="container">
+        <div class="area">
+            <h1>jsWidthBreakPoints</h1>
+            <p>Resize the window to see the CSS classes being applied.</p>
+            <div class="card">
+                <h2>Breakpoints:</h2>
+                <p>[400, 600, 800]</p>
+                <p id="current-width">Current width: <span id="width">861</span></p>
             </div>
         </div>
-    </section>
+    </div>
 
     <!-- jsWidthBreakPoints Library -->
     <script src="../dist/jsWidthBreakPoints.js"></script>

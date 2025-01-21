@@ -20,6 +20,18 @@ class JsWidthBreakPoints {
         // Sort breakpoints in descending order
         this.breakpoints = this.options.widths.sort((a, b) => b - a);
 
+        // Store the length of the breakpoints array
+        this.breakpoints_length = this.breakpoints.length;
+
+        // Get the biggest breakpoint
+        this.biggestBreakpoint = this.breakpoints[0];
+
+        // Get the smallest breakpoint
+        this.smallestBreakpoint = this.breakpoints[this.breakpoints_length - 1];
+
+        // Check if the callback is a function
+        this.hasCallback = typeof this.options.onBreakPoint === 'function';
+
         // Get the current window width
         this.currentWidth = this.getWindowWidth();
 
@@ -68,7 +80,7 @@ class JsWidthBreakPoints {
                     this.currentClass = breakpoint;
 
                     // Execute the callback if defined
-                    if (typeof this.options.onBreakPoint === 'function') {
+                    if (this.hasCallback) {
                         this.options.onBreakPoint({
                             oldBreakpoint: oldBreakpoint || '',
                             currentWidth: this.currentWidth,
@@ -85,12 +97,12 @@ class JsWidthBreakPoints {
 
     // Get the current breakpoint
     static getCurrentBreakpoint() {
-        if (this.currentWidth <= this.breakpoints[this.breakpoints.length - 1]) {
-            return `lt${this.breakpoints[this.breakpoints.length - 1]}`;
-        } else if (this.currentWidth >= this.breakpoints[0]) {
-            return `gt${this.breakpoints[0]}`;
+        if (this.currentWidth <= this.smallestBreakpoint) {
+            return `lt${this.smallestBreakpoint}`;
+        } else if (this.currentWidth >= this.biggestBreakpoint) {
+            return `gt${this.biggestBreakpoint}`;
         } else {
-            for (let i = 0; i < this.breakpoints.length; i++) {
+            for (let i = 0; i < this.breakpoints_length; i++) {
                 if (this.currentWidth >= this.breakpoints[i]) {
                     return `b${this.breakpoints[i]}a${this.breakpoints[i - 1]}`;
                 }

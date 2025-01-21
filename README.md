@@ -1,6 +1,6 @@
 # jsWidthBreakPoints
 
-![Image Preview](images/jsWidthBreakPoints.png)
+![Image Preview](https://raw.githubusercontent.com/marceloxp/jsWidthBreakPoints/refs/heads/main/images/jsWidthBreakPoints.png)
 
 ![Version](https://img.shields.io/github/package-json/v/marceloxp/jsWidthBreakPoints)
 ![License](https://img.shields.io/github/license/marceloxp/jsWidthBreakPoints)
@@ -66,7 +66,7 @@ Include the library directly in your project:
     <p>Breakpoints: [400, 600, 800]</p>
     <p id="current-width"></p>
 
-    <script src="path/to/jsWidthBreakPoints.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/marceloxp/jsWidthBreakPoints@main/dist/jsWidthBreakPoints.min.js"></script>
     <script>
         JsWidthBreakPoints.init({
             widths: [400, 600, 800],
@@ -82,12 +82,20 @@ Include the library directly in your project:
             },
         });
 
+        const drawInfo = () => {
+            document.getElementById('current-width').innerHTML = `
+                <p>Current width: ${window.innerWidth}
+                <br>
+                Current breakpoint: ${JsWidthBreakPoints.currentClass}</p>
+            `;
+        };
+
         // Update current width display
         window.addEventListener('resize', (event) => {
-            document.getElementById('current-width').textContent = `Current width: ${event.target.innerWidth}`;
+            drawInfo();
         });
 
-        document.getElementById('current-width').textContent = `Current width: ${window.innerWidth}`;
+        drawInfo();
     </script>
 </body>
 </html>

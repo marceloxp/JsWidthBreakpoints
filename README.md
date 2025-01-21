@@ -1,11 +1,11 @@
-# jsWidthBreakPoints
+# JsWidthBreakpoints
 
-![Image Preview](https://raw.githubusercontent.com/marceloxp/jsWidthBreakPoints/refs/heads/main/images/jsWidthBreakPoints.png)
+![Image Preview](https://raw.githubusercontent.com/marceloxp/JsWidthBreakpoints/refs/heads/main/images/JsWidthBreakpoints.png)
 
-![Version](https://img.shields.io/github/package-json/v/marceloxp/jsWidthBreakPoints)
-![License](https://img.shields.io/github/license/marceloxp/jsWidthBreakPoints)
+![Version](https://img.shields.io/github/package-json/v/marceloxp/JsWidthBreakpoints)
+![License](https://img.shields.io/github/license/marceloxp/JsWidthBreakpoints)
 
-**jsWidthBreakPoints** is a lightweight, vanilla JavaScript library for handling responsive breakpoints with dynamic CSS classes and visual rules. It allows you to define custom breakpoints, apply CSS classes dynamically based on the window width, and visualize breakpoints with a customizable rule.
+**JsWidthBreakpoints** is a lightweight, vanilla JavaScript library for handling responsive breakpoints with dynamic CSS classes and visual rules. It allows you to define custom breakpoints, apply CSS classes dynamically based on the window width, and visualize breakpoints with a customizable rule.
 
 ---
 
@@ -25,17 +25,17 @@
 You can include the library directly in your project using a CDN:
 
 ```html
-<script src="https://cdn.jsdelivr.net/gh/marceloxp/jsWidthBreakPoints@main/dist/jsWidthBreakPoints.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/marceloxp/JsWidthBreakpoints@main/dist/JsWidthBreakpoints.min.js"></script>
 ```
 
 ### Manual Installation
 Include the library directly in your project:
 
-1. Download the latest version from the [GitHub repository](https://github.com/marceloxp/jsWidthBreakPoints).
+1. Download the latest version from the [GitHub repository](https://github.com/marceloxp/JsWidthBreakpoints).
 2. Add the script to your HTML file:
 
 ```html
-<script src="path/to/jsWidthBreakPoints.js"></script>
+<script src="path/to/JsWidthBreakpoints.js"></script>
 ```
 
 ---
@@ -52,7 +52,7 @@ Include the library directly in your project:
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>jsWidthBreakPoints Demo</title>
+    <title>JsWidthBreakpoints Demo</title>
     <style>
         .width-lt400 { background-color: lightcoral; }
         .width-b400a600 { background-color: lightblue; }
@@ -61,14 +61,14 @@ Include the library directly in your project:
     </style>
 </head>
 <body>
-    <h1>jsWidthBreakPoints</h1>
+    <h1>JsWidthBreakpoints</h1>
     <p>Resize the window to see the CSS classes being applied.</p>
     <p>Breakpoints: [400, 600, 800]</p>
     <p id="current-width"></p>
 
-    <script src="https://cdn.jsdelivr.net/gh/marceloxp/jsWidthBreakPoints@main/dist/jsWidthBreakPoints.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/marceloxp/JsWidthBreakpoints@main/dist/JsWidthBreakpoints.min.js"></script>
     <script>
-        JsWidthBreakPoints.init({
+        JsWidthBreakpoints.init({
             widths: [400, 600, 800],
             applyClasses: true,
             classPrefix: 'width-',
@@ -86,7 +86,7 @@ Include the library directly in your project:
             document.getElementById('current-width').innerHTML = `
                 <p>Current width: ${window.innerWidth}
                 <br>
-                Current breakpoint: ${JsWidthBreakPoints.currentClass}</p>
+                Current breakpoint: ${JsWidthBreakpoints.currentClass}</p>
             `;
         };
 
@@ -128,7 +128,7 @@ If you define breakpoints as `[400, 600, 800]`, the library will apply the follo
 
 ## Configuration Options
 
-The `JsWidthBreakPoints.init()` method accepts the following options:
+The `JsWidthBreakpoints.init()` method accepts the following options:
 
 | Option         | Type       | Default       | Description                                                                 |
 |----------------|------------|---------------|-----------------------------------------------------------------------------|
@@ -173,7 +173,7 @@ rule: {
 
 ## Contributing
 
-Contributions are welcome! If you'd like to contribute to **jsWidthBreakPoints**, please follow these steps:
+Contributions are welcome! If you'd like to contribute to **JsWidthBreakpoints**, please follow these steps:
 
 1. Fork the repository.
 2. Create a new branch for your feature or bugfix.
@@ -190,4 +190,4 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 ## Support
 
-If you find this library useful, consider giving it a ⭐️ on [GitHub](https://github.com/marceloxp/jsWidthBreakPoints). For questions or issues, please open an issue on the repository.
+If you find this library useful, consider giving it a ⭐️ on [GitHub](https://github.com/marceloxp/JsWidthBreakpoints). For questions or issues, please open an issue on the repository.

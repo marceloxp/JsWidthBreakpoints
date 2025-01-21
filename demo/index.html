@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>jsWidthBreakPoints - Demo</title>
+    <title>JsWidthBreakpoints - Demo</title>
     <link rel="stylesheet" href="style.css">
     <style>
         /* Custom styles for breakpoints */
@@ -29,7 +29,7 @@
 <body>
     <div class="container">
         <div class="area">
-            <h1>jsWidthBreakPoints</h1>
+            <h1>JsWidthBreakpoints</h1>
             <p>Resize the window to see the CSS classes being applied.</p>
             <div class="card">
                 <h2>Breakpoints:</h2>
@@ -39,10 +39,10 @@
         </div>
     </div>
 
-    <!-- jsWidthBreakPoints Library -->
-    <script src="../dist/jsWidthBreakPoints.js"></script>
+    <!-- JsWidthBreakpoints Library -->
+    <script src="../dist/JsWidthBreakpoints.js"></script>
     <script>
-        JsWidthBreakPoints.init({
+        JsWidthBreakpoints.init({
             widths: [400, 600, 800],
             applyClasses: true,
             classPrefix: 'width-',
@@ -60,7 +60,7 @@
             document.getElementById('current-width').innerHTML = `
                 <p>Current width: ${window.innerWidth}
                 <br>
-                Current breakpoint: ${JsWidthBreakPoints.currentClass}</p>
+                Current breakpoint: ${JsWidthBreakpoints.currentClass}</p>
             `;
         };
 

@@ -10,8 +10,8 @@ const settingsPath = path.join(__dirname, '.vscode', 'settings.json');
 // Tarefa principal: compila e minifica o código
 function build() {
     return gulp
-        .src('src/jsWidthBreakPoints.js') // Arquivo de entrada
-        .pipe(concat('jsWidthBreakPoints.js')) // Concatena (útil se houver múltiplos arquivos)
+        .src('src/JsWidthBreakpoints.js') // Arquivo de entrada
+        .pipe(concat('JsWidthBreakpoints.js')) // Concatena (útil se houver múltiplos arquivos)
         .pipe(gulp.dest('dist')) // Salva o arquivo não minificado
         .pipe(terser()) // Minifica o código usando Terser
         .pipe(rename({ suffix: '.min' })) // Adiciona o sufixo .min ao nome do arquivo
@@ -24,7 +24,7 @@ async function updateStatusBar() {
     const version = package.version;
     settings.statusbartext = {
         active: true,
-        text: `🏷️ jsWidthBreakPoints v${version}`
+        text: `🏷️ JsWidthBreakpoints v${version}`
     };
 
     fs.writeFileSync(settingsPath, JSON.stringify(settings, null, 4));

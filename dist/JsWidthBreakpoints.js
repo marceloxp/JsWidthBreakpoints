@@ -1,4 +1,4 @@
-class JsWidthBreakPoints {
+class JsWidthBreakpoints {
     // Default settings
     static defaults = {
         widths: [],               // Array of breakpoints (e.g., [400, 600, 800])
@@ -45,7 +45,7 @@ class JsWidthBreakPoints {
         this.setupEventListeners();
 
         // Check and apply breakpoints immediately
-        this.checkBreakPoints(true); // Pass `true` to force callback execution
+        this.checkBreakpoints(true); // Pass `true` to force callback execution
 
         // Initialize the rule if enabled
         if (this.options.rule.show) {
@@ -76,12 +76,12 @@ class JsWidthBreakPoints {
     // Set up the window resize listener
     static setupEventListeners() {
         window.addEventListener('resize', () => {
-            this.checkBreakPoints();
+            this.checkBreakpoints();
         });
     }
 
     // Check breakpoints and execute actions
-    static checkBreakPoints(forceCallback = false) {
+    static checkBreakpoints(forceCallback = false) {
         const newWidth = this.getWindowWidth();
 
         // Check if the width has changed or if the callback should be forced
@@ -146,11 +146,11 @@ class JsWidthBreakPoints {
 
     // Inject CSS styles for the rule
     static injectRuleStyles() {
-        const styleId = 'jsWidthBreakPointsRuleStyles';
+        const styleId = 'jsWidthBreakpointsRuleStyles';
         if (document.getElementById(styleId)) return; // Avoid duplicate injection
 
         const styles = `
-            .jsWidthBreakPoints-rule {
+            .JsWidthBreakpoints-rule {
                 position: fixed;
                 top: 0;
                 left: 0;
@@ -160,7 +160,7 @@ class JsWidthBreakPoints {
                 z-index: 1000;
             }
 
-            .jsWidthBreakPoints-rule-line {
+            .JsWidthBreakpoints-rule-line {
                 position: absolute;
                 top: 0;
                 height: 100%;
@@ -169,7 +169,7 @@ class JsWidthBreakPoints {
                 opacity: ${this.options.rule.opacity};
             }
 
-            .jsWidthBreakPoints-rule-label {
+            .JsWidthBreakpoints-rule-label {
                 position: absolute;
                 top: 10px;
                 left: 5px;
@@ -193,16 +193,16 @@ class JsWidthBreakPoints {
     // Create the rule (régua)
     static createRule() {
         const ruleContainer = document.createElement('div');
-        ruleContainer.className = 'jsWidthBreakPoints-rule';
+        ruleContainer.className = 'JsWidthBreakpoints-rule';
 
         // Add lines for each breakpoint
         this.breakpoints.forEach((width) => {
             const line = document.createElement('div');
-            line.className = 'jsWidthBreakPoints-rule-line';
+            line.className = 'JsWidthBreakpoints-rule-line';
             line.style.left = `${width}px`;
 
             const label = document.createElement('div');
-            label.className = 'jsWidthBreakPoints-rule-label';
+            label.className = 'JsWidthBreakpoints-rule-label';
             label.textContent = `${width}px`;
             label.style.left = `${width + 5}px`; // Offset the label slightly
 
@@ -216,4 +216,4 @@ class JsWidthBreakPoints {
 }
 
 // Expose the class globally
-window.JsWidthBreakPoints = JsWidthBreakPoints;
+window.JsWidthBreakpoints = JsWidthBreakpoints;

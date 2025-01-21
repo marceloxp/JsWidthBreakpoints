@@ -7,6 +7,12 @@
     <title>jsWidthBreakPoints - Demo</title>
     <link rel="stylesheet" href="style.css">
     <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+
         .width-lt400 {
             background-color: lightcoral;
         }
@@ -21,36 +27,6 @@
 
         .width-gt800 {
             background-color: lightyellow;
-        }
-
-        /* Rule styles */
-        #rule {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none; /* Ensure the rule doesn't interfere with clicks */
-            z-index: 1000;
-        }
-
-        .rule-line {
-            position: absolute;
-            top: 0;
-            height: 100%;
-            width: 1px;
-            background-color: red;
-            opacity: 0.7;
-        }
-
-        .rule-label {
-            position: absolute;
-            top: 10px;
-            left: 5px;
-            background-color: rgba(255, 255, 255, 0.8);
-            padding: 2px 5px;
-            font-size: 12px;
-            border-radius: 3px;
         }
     </style>
 </head>

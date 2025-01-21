@@ -34,7 +34,8 @@ class JsWidthBreakPoints {
 
         // Initialize the rule if enabled
         if (this.options.rule.show) {
-            this.createRule();
+            this.injectRuleStyles(); // Inject CSS styles
+            this.createRule();       // Create the rule
         }
     }
 
@@ -114,21 +115,62 @@ class JsWidthBreakPoints {
         }
     }
 
+    // Inject CSS styles for the rule
+    static injectRuleStyles() {
+        const styleId = 'jsWidthBreakPointsRuleStyles';
+        if (document.getElementById(styleId)) return; // Avoid duplicate injection
+
+        const styles = `
+            .jsWidthBreakPoints-rule {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                pointer-events: none; /* Ensure the rule doesn't interfere with clicks */
+                z-index: 1000;
+            }
+
+            .jsWidthBreakPoints-rule-line {
+                position: absolute;
+                top: 0;
+                height: 100%;
+                width: 1px;
+                background-color: ${this.options.rule.color};
+                opacity: ${this.options.rule.opacity};
+            }
+
+            .jsWidthBreakPoints-rule-label {
+                position: absolute;
+                top: 10px;
+                left: 5px;
+                background-color: rgba(255, 255, 255, 0.8);
+                padding: 2px 5px;
+                font-size: 12px;
+                border-radius: 3px;
+                opacity: ${this.options.rule.opacity};
+            }
+        `;
+
+        const styleElement = document.createElement('style');
+        styleElement.id = styleId;
+        styleElement.textContent = styles;
+        document.head.appendChild(styleElement);
+    }
+
     // Create the rule (régua)
     static createRule() {
         const ruleContainer = document.createElement('div');
-        ruleContainer.id = 'rule';
-        ruleContainer.style.opacity = this.options.rule.opacity;
+        ruleContainer.className = 'jsWidthBreakPoints-rule';
 
         // Add lines for each breakpoint
         this.breakpoints.forEach((width) => {
             const line = document.createElement('div');
-            line.className = 'rule-line';
+            line.className = 'jsWidthBreakPoints-rule-line';
             line.style.left = `${width}px`;
-            line.style.backgroundColor = this.options.rule.color;
 
             const label = document.createElement('div');
-            label.className = 'rule-label';
+            label.className = 'jsWidthBreakPoints-rule-label';
             label.textContent = `${width}px`;
             label.style.left = `${width + 5}px`; // Offset the label slightly
 

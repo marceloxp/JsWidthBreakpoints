@@ -5,24 +5,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JsWidthBreakpoints - Demo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <style>
-        /* Custom styles for breakpoints */
-        .width-lt400 .area {
-            background-color: lightcoral;
-        }
-
-        .width-b400a600 .area {
-            background-color: cornflowerblue;
-        }
-
-        .width-b600a800 .area {
-            background-color: lightseagreen;
-        }
-
-        .width-gt800 .area {
-            background-color: darkslateblue;
-        }
+        .width-lt400    .area { --zone-color: #f87171; }
+        .width-b400a600 .area { --zone-color: #60a5fa; }
+        .width-b600a800 .area { --zone-color: #34d399; }
+        .width-gt800    .area { --zone-color: #a78bfa; }
     </style>
 </head>
 
@@ -30,16 +21,24 @@
     <div class="container">
         <div class="area">
             <h1>JsWidthBreakpoints</h1>
-            <p>Resize the window to see the CSS classes being applied.</p>
+            <p class="subtitle">Resize the window to see the CSS classes being applied.</p>
             <div class="card">
-                <h2>Breakpoints:</h2>
-                <p id="widths">[400, 600, 800]</p>
-                <p id="current-width">Current width: <span id="width">861</span></p>
+                <div class="card-row">
+                    <span class="card-label">Breakpoints</span>
+                    <span class="card-value mono" id="widths">[400, 600, 800]</span>
+                </div>
+                <div class="card-row">
+                    <span class="card-label">Current width</span>
+                    <span class="card-value mono"><span id="width">—</span>px</span>
+                </div>
+                <div class="card-row">
+                    <span class="card-label">Active class</span>
+                    <span class="card-value mono accent" id="active-class">—</span>
+                </div>
             </div>
         </div>
     </div>
 
-    <!-- JsWidthBreakpoints Library -->
     <script src="../dist/JsWidthBreakpoints.js"></script>
     <script>
         JsWidthBreakpoints.init({
@@ -47,9 +46,9 @@
             applyClasses: true,
             classPrefix: 'width-',
             rule: {
-                show: true, // Show the rule
-                opacity: 1, // Opacity of the rule
-                color: 'red', // Color of the rule
+                show: true,
+                opacity: 1,
+                color: 'red',
             },
             onBreakPoint: (event) => {
                 console.log('Breakpoint reached:', event);
@@ -57,18 +56,11 @@
         });
 
         const drawInfo = () => {
-            document.getElementById('current-width').innerHTML = `
-                <p>Current width: ${window.innerWidth}
-                <br>
-                Current breakpoint: ${JsWidthBreakpoints.currentClass}</p>
-            `;
+            document.getElementById('width').textContent = window.innerWidth;
+            document.getElementById('active-class').textContent = '.' + JsWidthBreakpoints.currentClass;
         };
 
-        // Update current width display
-        window.addEventListener('resize', (event) => {
-            drawInfo();
-        });
-
+        window.addEventListener('resize', drawInfo);
         drawInfo();
     </script>
 </body>

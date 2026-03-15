@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const gulp = require('gulp');
+const merge = require('merge-stream');
 const concat = require('gulp-concat');
 const terser = require('gulp-terser');
 const header = require('gulp-header');
@@ -8,7 +9,6 @@ const rename = require('gulp-rename');
 const package = require('./package.json');
 const settingsPath = path.join(__dirname, '.vscode', 'settings.json');
 
-// Cabeçalho personalizado
 const banner = `/**
  * JsWidthBreakpoints - A lightweight, vanilla JavaScript library for handling responsive breakpoints with dynamic CSS classes and visual rules.
  * Version: ${package.version}
@@ -19,15 +19,22 @@ const banner = `/**
  */
 `;
 
-// Tarefa principal: compila e minifica o código
 function build() {
-    return gulp
-        .src('src/JsWidthBreakpoints.js') // Arquivo de entrada
-        .pipe(concat('JsWidthBreakpoints.js')) // Concatena (útil se houver múltiplos arquivos)
-        .pipe(terser()) // Minifica o código usando Terser
-        .pipe(rename({ suffix: '.min' })) // Adiciona o sufixo .min ao nome do arquivo
-        .pipe(header(banner))               // Adiciona o cabeçalho personalizado
-        .pipe(gulp.dest('dist')); // Salva o arquivo minificado
+    const rawStream = gulp
+        .src('src/JsWidthBreakpoints.js')
+        .pipe(concat('JsWidthBreakpoints.js'))
+        .pipe(header(banner))
+        .pipe(gulp.dest('dist'));
+
+    const minStream = gulp
+        .src('src/JsWidthBreakpoints.js')
+        .pipe(concat('JsWidthBreakpoints.js'))
+        .pipe(terser())
+        .pipe(rename({ suffix: '.min' }))
+        .pipe(header(banner))
+        .pipe(gulp.dest('dist'));
+
+    return merge(rawStream, minStream);
 }
 
 async function updateStatusBar() {
@@ -45,6 +52,5 @@ async function updateStatusBar() {
     await Promise.resolve();
 }
 
-// Tarefa padrão: executa a tarefa de build
 exports.default = build;
 exports.updateStatusBar = updateStatusBar;

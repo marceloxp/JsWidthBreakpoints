@@ -1,3 +1,11 @@
+/**
+ * JsWidthBreakpoints - A lightweight, vanilla JavaScript library for handling responsive breakpoints with dynamic CSS classes and visual rules.
+ * Version: 1.0.1
+ * Repository: https://github.com/marceloxp/JsWidthBreakpoints
+ * License: MIT
+ * Author: Marcelo XP
+ * Build Date: 2026-03-15
+ */
 class JsWidthBreakpoints {
     // Default settings
     static defaults = {

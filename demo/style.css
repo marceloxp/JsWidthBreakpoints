@@ -1,59 +1,86 @@
+:root {
+    --zone-color: #a78bfa;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
 body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background-color: #282a2b;
-    color: #fff;
+    font-family: 'Inter', sans-serif;
+    background-color: #18181b;
+    color: #e4e4e7;
     display: flex;
     justify-content: center;
-    height: 100vh;
-    text-align: center;
+    min-height: 100vh;
+    padding: 6vh 1rem;
+    transition: background-color 0.5s ease;
 }
 
 .container {
     width: 80vw;
-    max-width: 900px;
-    min-width: 300px;
-    margin-top: 5vh;
+    max-width: 520px;
+    min-width: 280px;
 }
 
 .area {
-    padding: 1.5rem;
-    border-radius: 8px;
-    border: 1px solid #ccc;
+    padding: 2.5rem 2rem;
+    border-radius: 16px;
+    border: 1px solid var(--zone-color, #3f3f46);
+    background: color-mix(in srgb, var(--zone-color) 15%, #1c1c1f);
+    box-shadow: 0 0 40px -10px color-mix(in srgb, var(--zone-color) 30%, transparent);
+    transition: border-color 0.4s ease, box-shadow 0.4s ease, background 0.4s ease;
+    text-align: center;
 }
 
 h1 {
-    font-size: clamp(1.2rem, calc(1.2rem + 2vw), 42px);
-    margin: 0;
+    font-size: clamp(1.4rem, 4vw, 2rem);
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    color: #fff;
+    margin-bottom: 0.5rem;
 }
 
-div.container > .area > p {
-    font-size: clamp(1rem, calc(0.1rem + 1.6vw), 18px);
-}
-
-p {
-    margin: 0.5rem 0;
+.subtitle {
+    font-size: 0.875rem;
+    color: #71717a;
+    margin-bottom: 2rem;
 }
 
 .card {
-    background-color: #fff;
-    color: #333;
-    padding: 1rem;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    margin-top: 1rem;
+    background: #111113;
+    border: 1px solid #2d2d30;
+    border-radius: 10px;
+    overflow: hidden;
+    text-align: left;
 }
 
-.card h2 {
-    margin: 0 0 0.5rem;
+.card-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 1.1rem;
+    border-bottom: 1px solid #2d2d30;
 }
 
-#widths {
-    font-weight: bold;
-    font-size: larger;
-    color: deeppink;
+.card-row:last-child {
+    border-bottom: none;
 }
 
-.card span {
-    font-weight: bold;
+.card-label {
+    font-size: 0.8rem;
+    color: #71717a;
+}
+
+.card-value {
+    font-size: 0.85rem;
+    color: #e4e4e7;
+    font-weight: 500;
+}
+
+.mono {
+    font-family: 'JetBrains Mono', monospace;
+}
+
+.accent {
+    color: var(--zone-color);
+    transition: color 0.4s ease;
 }

@@ -4,6 +4,7 @@
 
 ![Version](https://img.shields.io/github/package-json/v/marceloxp/JsWidthBreakpoints)
 ![License](https://img.shields.io/github/license/marceloxp/JsWidthBreakpoints)
+![Testes](https://github.com/marceloxp/JsWidthBreakpoints/actions/workflows/test.yml/badge.svg)
 
 **JsWidthBreakpoints** is a lightweight, vanilla JavaScript library for handling responsive breakpoints with dynamic CSS classes and visual rules. It allows you to define custom breakpoints, apply CSS classes dynamically based on the window width, and visualize breakpoints with a customizable rule.
 
